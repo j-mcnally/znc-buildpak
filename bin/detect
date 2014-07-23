@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f znc.conf ]; then
+if [ -f $1/znc.conf ]; then
   echo "ZNC"
   exit 0
 else
