@@ -5,8 +5,9 @@ DIR="$( cd "$( dirname "$0" )" && pwd )"
 echo "------> Installing ngrok and runner"
 cd $DIR; cp -R ../files/run_znc.sh $1/run_znc.sh
 cd $DIR; cp -R ../files/ngrok $1/ngrok
-rm -rf $2
+mkdir -p /app
 mkdir -p $2
+rm -rf $2/znc-1.4.tar.gz 
 if [ -f $2/znc-1.4.tar.gz ]; then
   echo "----> znc is already compiled"
   cd $2/znc-1.4; make install
@@ -14,9 +15,12 @@ else
   echo "----> downloading and compile znc"
   cd $2; curl -O http://znc.in/releases/znc-1.4.tar.gz
   cd $2; tar zxvf znc-1.4.tar.gz
-  cd $2/znc-1.4; ./configure --prefix="/app"
+  cd $2/znc-1.4; ./configure --prefix="/app/znc"
   cd $2/znc-1.4; make
   cd $2/znc-1.4; make install
+  mkdir -p $1/znc
+  cp -R /app/znc/ $1/znc
+
 fi
 
 echo "-----> Relocating znc config to proper folder"
