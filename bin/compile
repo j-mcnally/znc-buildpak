@@ -6,7 +6,7 @@ echo "------> Installing ngrok and runner"
 cd $DIR; cp -R ../files/run_znc.sh $1/run_znc.sh
 cd $DIR; cp -R ../files/ngrok $1/ngrok
 mkdir -p $2
-if [ -f $2/znc-1.4.tar.gz ]
+if [ -f $2/znc-1.4.tar.gz ]; then
   echo "----> znc is already compiled"
   cd $2/znc-1.4; make install
 else
