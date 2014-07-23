@@ -4,6 +4,7 @@ CURDIR=$PWD
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 cd $DIR; cp -R ../files/run_znc.sh $1/run_znc.sh
 cd $DIR; cp -R ../files/ngrok $1/ngrok
+mkdir -p $2
 cd $2; curl -O http://znc.in/releases/znc-1.4.tar.gz
 cd $2; tar zxvf znc-1.4.tar.gz
 cd $2; ./configure --prefix="$1"
