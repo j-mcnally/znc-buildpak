@@ -2,17 +2,26 @@
 
 CURDIR=$PWD
 DIR="$( cd "$( dirname "$0" )" && pwd )"
+echo "------> Installing ngrok and runner"
 cd $DIR; cp -R ../files/run_znc.sh $1/run_znc.sh
 cd $DIR; cp -R ../files/ngrok $1/ngrok
 mkdir -p $2
-cd $2; curl -O http://znc.in/releases/znc-1.4.tar.gz
-cd $2; tar zxvf znc-1.4.tar.gz
-cd $2/znc-1.4; ./configure --prefix="$1"
-cd $2/znc-1.4; make
-cd $2/znc-1.4; make install
+if [ -f $2/znc-1.4.tar.gz ]
+  echo "----> znc is already compiled"
+  cd $2/znc-1.4; make install
+else
+  echo "----> downloading and compile znc"
+  cd $2; curl -O http://znc.in/releases/znc-1.4.tar.gz
+  cd $2; tar zxvf znc-1.4.tar.gz
+  cd $2/znc-1.4; ./configure --prefix="$1"
+  cd $2/znc-1.4; make
+  cd $2/znc-1.4; make install
+fi
+
+echo "-----> Relocating znc config to proper folder"
 mkdir -p $1/.znc/configs
 cp $1/znc.conf $1/.znc/configs/znc.conf
 rm $1/znc.conf
-
+echo "------> Setting up Procfile"
 cd $DIR; cp ../Procfile $1/Procfile
 cd $CURDIR
