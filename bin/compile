@@ -7,9 +7,9 @@ cd $DIR; cp -R ../files/ngrok $1/ngrok
 mkdir -p $2
 cd $2; curl -O http://znc.in/releases/znc-1.4.tar.gz
 cd $2; tar zxvf znc-1.4.tar.gz
-cd $2; ./configure --prefix="$1"
-cd $2; make
-cd $2; make install
+cd $2/znc-1.4; ./configure --prefix="$1"
+cd $2/znc-1.4; make
+cd $2/znc-1.4; make install
 mkdir -p $1/.znc/configs
 cp $1/znc.conf $1/.znc/configs/znc.conf
 rm $1/znc.conf
