@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -f $1/znc.conf ]; then
-  echo "ZNC"
+  echo "-----> Found a znc.conf"
   exit 0
 else
   exit 1
