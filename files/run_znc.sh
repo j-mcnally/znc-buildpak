@@ -1,3 +1,2 @@
-./bin/znc
-export ZNCPID=$!
-./ngrok --config ngrok.conf
+./znc/bin/znc
+./ngrok -authtoken $NGROK_API_KEY --config ngrok.conf start znc
