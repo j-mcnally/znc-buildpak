@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# this pack is valid for apps with a hello.txt in the root
 if [ -f znc.conf ]; then
   echo "ZNC"
   exit 0
